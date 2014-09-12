@@ -1,5 +1,3 @@
-*= require font-awesome
-
 html{
   font-family: Interstate, 'Lucida Grande', Arial, sans-serif;
 }
@@ -110,4 +108,8 @@ header img{
 
 .form_popup {
   font-size: 55%;
+}
+
+#timer_display{
+  font-size: 300%;
 }

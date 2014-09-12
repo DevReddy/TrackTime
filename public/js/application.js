@@ -47,10 +47,12 @@ $(document).ready(function(){
       console.log('success')
       var $tracks = $('#tracks')
       SC.oEmbed(data.permalink_url, function(oEmbed){
-        // $('#tracks').append('<li></li>')
-        // $('#tracks li:last').append(oEmbed.html)
-        $('#tracks').prepend('<li></li>')
-        $('#tracks li:first').append(oEmbed.html)
+        $('#tracks').append("<li class='track'></li>")
+        var track_number = $('#tracks').children('.track').length
+        $('#tracks li:last').append("" + track_number + ". ")
+        $('#tracks li:last').append(oEmbed.html)
+        // $('#tracks').prepend("<li class='track'></li>")
+        // $('#tracks li:first').append(oEmbed.html)
       })
       $('#track_form')[0].reset()
     })
@@ -76,7 +78,6 @@ $(document).ready(function(){
       console.log('success')
       var $timers = $('#timer_list')
       $timers.append("<p><a href='#'>" + data + "</a> seconds</p>")
-      // <p><a href="#"><%= timer.pattern %></a> seconds</p>
       $('#timer_form')[0].reset()
     })
     ajaxRequest.fail(function(){
@@ -86,6 +87,12 @@ $(document).ready(function(){
 
   $('#timer_list').delegate('a', 'click', function(e){
     e.preventDefault();
+    track_num = prompt('Which song do you want to play?', 'Song Number (Integer)')
+    var iframeElement = $(".track:nth-child(" + track_num + ") iframe")[0]
+    while (!iframeElement) {
+      track_num = prompt('Song does not exist, enter a new number.','Song Number (Integer)')
+      var iframeElement = $(".track:nth-child(" + track_num + ") iframe")[0]
+    }
     $link = $(this);
     time = parseInt($link[0].innerHTML);
     console.log(time);
@@ -94,10 +101,12 @@ $(document).ready(function(){
       time = (time - 1);
       $('#timer_display').html("<p>" + time + " seconds</p>");
       if (time == 0){
-        // debugger
         clearInterval(loop);
-        $('#timer_display').html("");
-        var iframeElement = $("iframe")[0];
+        $('#timer_display').html(":D");
+        setTimeout(function(){
+          $('#timer_display').html("");
+        }, 300);
+        // var iframeElement = $("iframe")[0];
         var widget = SC.Widget(iframeElement);
         widget.play();
       }
