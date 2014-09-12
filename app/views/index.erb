@@ -26,21 +26,23 @@
     <ul id="tracks">
       <% if logged_in? %>
         <% User.find(session[:user_id]).tracks.each_with_index do |track, index| %>
-          <% client = SoundCloud.new(:client_id => ENV['CLIENT_ID']) %>
-          <% info = client.get('/oembed', :url => track.url, :maxheight => '110%', :show_comments => false, ) %>
-          <%= "#{index + 1}. " + info['html'] %>
+          <li class="track">
+            <% client = SoundCloud.new(:client_id => ENV['CLIENT_ID']) %>
+            <% info = client.get('/oembed', :url => track.url, :maxheight => '110%', :show_comments => false, ) %>
+            <%= "#{index + 1}. " + info['html'] %>
+          </li>
         <% end %>
       <% end %>
     </ul>
   </nav>
 
   <section id="content">
-    <p>TRACK</p>
+    <p>ADD TRACK</p>
     <form id="track_form" action="/add_track" method="post">
       <input type="text" name="track_url" placeholder="Type in track URL here.">
       <input type="submit">
     </form>
-    <p>TIME</p>
+    <p>ADD TIMER</p>
     <form id="timer_form" action="/add_timer" method="post">
       <input type="text" name="pattern" placeholder="Type time (in seconds) here.">
       <input type="submit">
