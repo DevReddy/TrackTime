@@ -1,0 +1,52 @@
+<div id="login_form" class="form_popup">
+  <%= erb :_login %>
+</div>
+
+<div id="signup_form" class="form_popup">
+  <%= erb :_signup %>
+</div>
+
+<div class="container">
+
+ <!--  var $timers = $('#timer_list')
+      $timers.append("<a href='#'>" + data + " seconds</a>") -->
+  <nav id="timers" class="list">
+    Timers<br>
+    <div id="timer_list">
+      <% if logged_in? %>
+        <% User.find(session[:user_id]).timers.each_with_index do |timer, index| %>
+          <p><a href="#"><%= timer.pattern %></a> seconds</p>
+        <% end %>
+      <% end %>
+    </div>
+  </nav>
+
+  <nav id="tracks_list" class="list">
+    Tracks<br>
+    <ul id="tracks">
+      <% if logged_in? %>
+        <% User.find(session[:user_id]).tracks.each_with_index do |track, index| %>
+          <% client = SoundCloud.new(:client_id => ENV['CLIENT_ID']) %>
+          <% info = client.get('/oembed', :url => track.url, :maxheight => '110%', :show_comments => false, ) %>
+          <%= "#{index + 1}. " + info['html'] %>
+        <% end %>
+      <% end %>
+    </ul>
+  </nav>
+
+  <section id="content">
+    <p>TRACK</p>
+    <form id="track_form" action="/add_track" method="post">
+      <input type="text" name="track_url" placeholder="Type in track URL here.">
+      <input type="submit">
+    </form>
+    <p>TIME</p>
+    <form id="timer_form" action="/add_timer" method="post">
+      <input type="text" name="pattern" placeholder="Type time (in seconds) here.">
+      <input type="submit">
+    </form>
+
+    <div id="timer_display">
+    </div>
+  </section>
+</div>

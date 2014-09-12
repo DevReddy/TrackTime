@@ -1,0 +1,113 @@
+*= require font-awesome
+
+html{
+  font-family: Interstate, 'Lucida Grande', Arial, sans-serif;
+}
+
+body{
+  background-color: #2980b9;
+  color: #f39c12;
+}
+
+#title{
+  /*font-family: 'Amatic SC', cursive;*/
+  /*font-size: 120%;*/
+  margin:0;
+}
+
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+header{
+  background-color: #2980b9;
+  border-bottom: 5px solid;
+  color: #f39c12;
+  font-size: 250%;
+  /*max-height: 150px;*/
+  padding: 1%;
+  text-align: center;
+}
+
+header span{
+  font-size: 55%;
+}
+
+header a{
+  color: #f39c12;
+  font-size: 60%;
+  text-decoration: none;
+}
+
+header a:hover{
+  text-decoration: underline;
+}
+
+header img{
+  max-height: 100px;
+}
+
+#login{
+  border: 2px solid #f39c12;
+  display: block;
+  z-index: 100;
+}
+
+#cloud_pic{
+  width: 15%;
+}
+
+.list {
+  padding: 1%;
+  position: relative;
+  width: 20%;
+}
+
+#content{
+  /*background-color: #2980b9;*/
+  padding-top: 1%;
+  height: 660px;
+  position: inline-block;
+  text-align: center;
+}
+
+#timers{
+  /*background-color: #2980b9;*/
+  border-right: 2px solid #f39c12;
+  color: #f39c12;
+  float: left;
+  text-align: left;
+}
+
+#timer_list{
+  height: 630px;
+  overflow-y: scroll;
+}
+
+#tracks_list{
+  /*background-color: #2980b9;*/
+  border-left: 2px solid #f39c12;
+  color: #f39c12;
+  float: right;
+  text-align: left;
+}
+
+#tracks_list iframe{
+  /*height: 20%;*/
+  max-height: 50%;
+}
+
+#tracks {
+  height: 630px;
+  overflow-y: scroll;
+}
+
+#tracks li{
+  max-height: 40%;
+}
+
+.form_popup {
+  font-size: 55%;
+}

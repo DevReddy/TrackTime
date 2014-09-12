@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/application.css">
+  <link href='http://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+
+  <script src="http://connect.soundcloud.com/sdk.js"></script>
+  <script src="https://w.soundcloud.com/player/api.js"></script>
+  <script src="/js/application.js"></script>
+  <title>TrackTime</title>
+  <link rel="icon" type="image/x-icon" href="/public/favicon.ico">
+</head>
+<body>
+  <header>
+    <img src="/images/sc_cloud.png" id="cloud_pic"><br>
+    <div id="title">TrackTime</div>
+    <!-- <br> -->
+    <% if !logged_in? %>
+      <!-- <a href="/" id="login"><img src="images/sc-connect.png"></a> -->
+      <a href="" class="login">Login</a>
+      <a href="" class="signup">Sign Up</a>
+    <% else %>
+      <span>Hi, <%= User.find(session[:user_id]).username %>! </span><a href="/logout">Logout</a>
+    <% end %>
+  </header>
+  <%= yield %>
+
+</body>
+</html>
